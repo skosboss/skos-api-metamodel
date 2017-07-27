@@ -1,0 +1,104 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix hydra: <http://www.w3.org/ns/hydra/core#> .
+@prefix hydra-ext: <http://skos-api.org/hydra-extended#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix pp: <http://someapivendor.com/api/> .
+@prefix skos-api: <http://skos-api.org/metamodel#> .
+@prefix api: <http://skos-api.org/api#> .
+
+##########################################
+# Goal: Create concept
+#
+#  prefLabel
+#
+# INTENT: create resource
+# 
+##########################################
+
+# pp-data:WhiskybasedCocktail
+[] a skos:Concept ;
+  skos-api:url pp-data:WhiskybasedCocktail ;
+  skos:prefLabel "Whisky-based cocktails" ;
+  skos-api:parent pp-data:Cocktails ;
+  #skos-api:inProject <uuid-112093810238102398> ; 
+.
+
+# shapes graph
+pp:CreateConcept_project a sh:NodeShape ;
+  sh:targetClass skos:Concept ;
+  sh:property [
+    sh:path skos:prefLabel ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:nodeKind sh:Literal ;
+  ] ,
+  [
+    sh:path skos-api:parent ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:nodeKind sh:IRI ;
+  ] ,
+  [
+    sh:path skos-api:inProject ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:nodeKind sh:IRI ;
+  ] ,
+  [
+    sh:path skos:scopeNote ;
+    sh:maxCount 1 ;
+  ]
+.
+
+
+#### Goal add altLabel to newly created concept
+pp-data:WhiskybasedCocktail
+  skos:altLabel "Whiskey-based cocktail" ;
+  skos-api:inProject <uuid-112093810238102398>
+.
+
+
+
+
+### INTENT: Create
+# pp-data:WhiskybasedCocktail
+[] a skos:Concept ;
+  skos-api:url pp-data:WhiskybasedCocktail ;
+  skos:prefLabel "Whisky-based cocktails" ;
+  skos-api:parent pp-data:Cocktails ;
+  skos-api:inProject <uuid-112093810238102398> ;
+  skos:altLabel "Whiskey-based cocktail" ;
+  skos:altLabel "Whisky cocktail" ; 
+.
+
+
+# remove altLabel
+
+# GET, DELETE, ADD
+# shape?
+# sparql?
+
+
+# shapes graph
+pp: a sh:NodeShape ;
+  sh:targetClass skos:Concept ;
+  sh:property [
+    sh:alternativePath 
+      (
+        skos:prefLabel
+        skos:altLabel
+        skos:hiddenLabel
+      )
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:nodeKind sh:Literal ;
+  ]
+.
+
+
+
+
