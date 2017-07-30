@@ -70,9 +70,9 @@ pp-data:WhiskybasedCocktail
   skos-api:url pp-data:WhiskybasedCocktail ;
   skos:prefLabel "Whisky-based cocktails" ;
   skos-api:parent pp-data:Cocktails ;
-  skos-api:inProject <uuid-112093810238102398> ;
+  skos-api:projectId "123" ;
   skos:altLabel "Whiskey-based cocktail" ;
-  skos:altLabel "Whisky cocktail" ; 
+  skos:altLabel "Whisky cocktail" ;
 .
 
 

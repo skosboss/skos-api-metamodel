@@ -9,45 +9,28 @@
 
 skos-api: owl:imports skos: .
 
-skos-api:Project a rdfs:Class ;
-.
-
-
-# is it necessary to define the goal?
-# api:Goal a sd:Graph .
-
-api:Intent a rdfs:Class .
-api:PostCondition rdfs:subClassOf sh:Shape .
-
-skos-api:CreateConcept a hydra:Operation ;
-    rdfs:label "Create New Concept" ;
-    hydra:description "Creates a new SKOS concept in your thesaurus." ;
-.
-
-skos-api:GetConcept a hydra:Operation ;
-  rdfs:label "Get complete concept" ;
-  hydra:description "Get a complete SKOS concept representation." ;
-.
-
-skos-api:AddPrefLabel a hydra:Operation ;
-  rdfs:label "Add prefLabel" ;
-  hydra:description "Adds a preferred label to an existing SKOS concept." ;
-.
-
-skos-api:AddAltLabel a hydra:Operation ;
-  rdfs:label "Add altLabel" ;
-  hydra:description "Adds an alternative label to an existing SKOS concept." ;
-.
-
-skos-api:contains a rdf:Property ;
-  rdfs:domain skos-api:Project ;
-.
+### General ###
 
 skos-api:inProject a rdf:Property ;
   rdfs:range skos-api:Project ;
 .
 
+skos-api:uri a rdf:Property .
+
 skos-api:parent a rdf:Property .
+
+### Project ###
+
+skos-api:Project a rdfs:Class ;
+.
+
+### ConceptScheme ###
+
+skos-api:title a rdf:Property ;
+  rdfs:domain skos:ConceptScheme ;
+.
+
+### Concept ###
 
 skos:topConceptOf rdfs:subPropertyOf skos-api:parent .
 

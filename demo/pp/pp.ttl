@@ -8,55 +8,277 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix pp: <http://someapivendor.com/api/> .
 @prefix skos-api: <http://skos-api.org/metamodel#> .
-@prefix api: <http://skos-api.org/api#> .
-
-hydra-ext:method a hydra:TemplatedLink .
 
 pp:BadRequest a hydra:Status ;
   hydra:code "400" ;
   hydra:description "Bad request" ;
 .
 
-pp: a hydra:ApiDocumentation ;
-  hydra:supportedClass pp:MethodList ;
+pp:doc a hydra:ApiDocumentation ;
+  hydra:entrypoint pp:api ;
 .
 
-pp:MethodList a hydra:Class ;
-  hydra-ext:method
-    pp:CreateConceptMethod , 
-    pp:GetCompleteConceptMethod ,
-    pp:AddPrefLabelMethod ,
-    pp:AddAltLabelMethod ;
+pp:EntryPoint a hydra:Class ;
+  hydra:supportedProperty
+    pp:createConceptScheme ,
+    pp:getConceptSchemes ,
+    pp:getTopConcepts ,
+    pp:getChildConcepts ,
+      #TODO
+      #pp:getSubTree ,
+      #pp:deleteConceptScheme ,
+    pp:createTopConcept ,
+    pp:createConcept , 
+    pp:getCompleteConcept ,
+    pp:addPrefLabel ,
+    pp:addAltLabel ,
+    pp:deleteAltLabel ;
 .
 
-pp:CreateTopConceptMethod a hydra:IriTemplate ;
-  hydra:template "/PoolParty/api/thesaurus/{project}/createConcept{?parent,prefLabel}" ;
-  hydra:variableRepresentation hydra:BasicRepresentation ;
-  hydra:mapping 
-    [
-      a hydra:IriTemplateMapping ;
-        hydra:variable "project" ;
-        hydra:property skos-api:inProject ;
-        hydra:required "true"^^xsd:boolean ;
-    ] , 
-    [
-      a hydra:IriTemplateMapping ;
-        hydra:variable "parent" ;
-        hydra:property skos-api:parent ;
-        hydra:required "true"^^xsd:boolean ;
-    ] , 
-    [
-      a hydra:IriTemplateMapping ;
-        hydra:variable "prefLabel" ;
-        hydra:property skos:prefLabel ;
-        hydra:required "true"^^xsd:boolean ;
-    ] ;
+pp:createConceptScheme a hydra:TemplatedLink , rdf:Property ;
   hydra:supportedOperation [
     a hydra:Operation ;
     hydra:method "POST" ;
-    rdfs:label "Create New Concept" ;
+    rdfs:label "Create New Concept Scheme" ;
+    hydra:description "Creates a new concept scheme in the given project." ;
+    # hydra:returns skos-api:conceptScheme-uri ;
+    hydra:returns skos:ConceptScheme ;
+    # e.g. like this:
+    #{
+    #  "@context" : {
+    #    "skos" : "http://www.w3.org/2004/02/skos/core#",
+    #    "skos-api" : "http://skos-api.org/metamodel#"
+    #  },
+    #  "@id" : "http://blabla.net/conceptscheme/123",
+    #  "@type" : "skos:ConceptScheme" ,
+    #  "skos-api:uri" : "http://blabla.net/conceptscheme/123"
+    #}
+    hydra-ext:returnShape [ 
+      a sh:NodeShape ;
+      sh:targetClass skos:ConceptScheme ;
+      sh:property
+        [ 
+          sh:path rdf:type ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+          sh:class skos:ConceptScheme ;
+        ] ,
+        [ 
+          sh:path skos-api:uri ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+        ] ;
+      sh:closed true 
+    ] ;
+    hydra-ext:addedDiff [ 
+      a sh:NodeShape ;
+      sh:targetClass skos:ConceptScheme ;
+      sh:property
+        [ 
+          sh:path rdf:type ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+          sh:class skos:ConceptScheme ;
+        ] ,
+        [ 
+          sh:path skos-api:uri ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+        ] ,
+        [
+          sh:path skos-api:inProject ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+        ] ,
+        [
+          sh:path skos-api:title ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:Literal ;
+        ] ,
+        [
+          sh:path skos-api:description ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:Literal ;
+        ];
+      # should this be a closed shape?
+      sh:closed true 
+    ] ;
+    hydra:statusCodes
+      [
+        hydra:code "200" ;
+        hydra:description "If the top concept was created."
+      ] ,
+      pp:BadRequest ;
+  ] ;
+.
+
+pp:getConceptSchemes a hydra:TemplatedLink , rdf:Property ;
+  hydra:supportedOperation [
+    a hydra:Operation ;
+    hydra:method "GET" ;
+    rdfs:label "Get Concept Schemes" ;
+    hydra:description "Returns a list of all concept schemes in the given project." ;
+    hydra:returns hydra:Collection ;
+    hydra-ext:returnShape [
+      a hydra:Collection ;
+      sh:targetClass hydra:Collection ;
+      sh:property
+        [ 
+          sh:path sh:member ;
+          sh:node 
+            [
+              a sh:NodeShape ;
+              sh:property [
+              sh:path rdf:type ;
+              sh:minCount 1 ;
+              sh:maxCount 1 ;
+              sh:nodeKind sh:IRI ;
+              sh:class skos:ConceptScheme ;
+            ] ,
+            [ 
+              sh:path skos-api:uri ;
+              sh:minCount 1 ;
+              sh:maxCount 1 ;
+              sh:nodeKind sh:IRI ;
+            ] ,
+            [
+              sh:path skos-api:title ;
+              sh:minCount 1 ;
+              sh:maxCount 1 ;
+              sh:nodeKind sh:Literal ;
+            ]
+          ]
+        ] ;
+    ] ;
+    hydra:statusCodes 
+      [
+        hydra:code "200" ;
+      ] ,
+      pp:BadRequest ;
+  ] ;
+.
+
+pp:getTopConcepts a hydra:TemplatedLink , rdf:Property ;
+  hydra:supportedOperation [
+    a hydra:Operation ;
+    hydra:method "GET" ;
+    rdfs:label "Get Top Concepts" ;
+    hydra:description "Returns a list of direct top concepts for a concept scheme." ;
+    hydra:returns hydra:Collection ;
+    hydra-ext:returnShape [
+      a hydra:Collection ;
+      sh:targetClass hydra:Collection ;
+      sh:property [ 
+        sh:path sh:member ;
+        sh:node pp:ConceptShape ;
+      ] ;
+    ] ;
+    hydra:statusCodes 
+      [
+        hydra:code "200" ;
+      ] ,
+      pp:BadRequest ;
+  ] ;
+.
+
+pp:getChildConcepts a hydra:TemplatedLink , rdf:Property ;
+  hydra:supportedOperation [
+    a hydra:Operation ;
+    hydra:method "GET" ;
+    rdfs:label "Get Child Concepts" ;
+    hydra:description "Returns a list of narrower concepts of a given concept or concept scheme." ;
+    hydra:returns hydra:Collection ;
+    hydra-ext:returnShape [
+      a hydra:Collection ;
+      sh:targetClass hydra:Collection ;
+      sh:property [ 
+        sh:path sh:member ;
+        sh:node pp:ConceptShape ;
+      ] ;
+    ] ;
+    hydra:statusCodes 
+      [
+        hydra:code "200" ;
+      ] ,
+      pp:BadRequest ;
+  ] ;
+.
+
+pp:createTopConcept a hydra:TemplatedLink , rdf:Property ;
+  hydra:supportedOperation [
+    a hydra:Operation ;
+    hydra:method "POST" ;
+    rdfs:label "Create New Top Concept" ;
     hydra:description "Creates a new SKOS top concept in your thesaurus." ;
-    hydra:returns 
+    # hydra:returns skos-api:concept-uri ;
+    hydra:returns skos:Concept ;
+    # e.g. like this:
+    #{
+    #  "@context" : {
+    #    "skos" : "http://www.w3.org/2004/02/skos/core#",
+    #    "skos-api" : "http://skos-api.org/metamodel#"
+    #  },
+    #  "@id" : "http://blabla.net/concept/123",
+    #  "@type" : "skos:Concept",
+    #  "skos-api:uri" : "http://blabla.net/concept/123"
+    #}
+    hydra-ext:returnShape [ 
+      a sh:NodeShape ;
+      sh:targetClass skos:Concept ;
+      sh:property
+        [ 
+          sh:path rdf:type ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+          sh:class skos:Concept ;
+        ],
+        [ 
+          sh:path skos-api:uri ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+        ] ;
+      sh:closed true 
+    ] ;
+    hydra-ext:addedDiff [ 
+      a sh:NodeShape ;
+      sh:targetClass skos:Concept ;
+      sh:property
+        [ 
+          sh:path rdf:type ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+          sh:class skos:Concept ;
+        ] ,
+        [ 
+          sh:path skos-api:uri ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+        ] ,
+        [
+          sh:path skos:topConceptOf ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+        ] ,
+        # is this necessary to add?
+        [
+          sh:inversePath skos:hasTopConcept ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+        ];
+      sh:closed true 
+    ] ;
     hydra:statusCodes 
       [
         hydra:code "200" ;
@@ -64,53 +286,66 @@ pp:CreateTopConceptMethod a hydra:IriTemplate ;
       ] ,
       pp:BadRequest ;
   ] ;
-  # TODO: should be an IRI
-  api:action "CREATE" ; 
-  api:postCondition [
-    a sh:NodeShape ;
-    sh:targetClass skos-api:Concept ;
-    sh:property 
-      [
-        a sh:PropertyShape ;
-        sh:path skos-api:prefLabel ;
-        sh:nodeKind sh:Literal ;
-        sh:datatype xsd:string ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-      ] ;
-    sh:closed true ;
-  ] ;
 .
 
-pp:CreateConceptMethod a hydra:IriTemplate ;
-  hydra:template "/PoolParty/api/thesaurus/{project}/createConcept{?parent,prefLabel}" ;
-  hydra:variableRepresentation hydra:BasicRepresentation ;
-  hydra:mapping 
-    [
-      a hydra:IriTemplateMapping ;
-        hydra:variable "project" ;
-        hydra:property skos-api:projectId ;
-        hydra:required "true"^^xsd:boolean ;
-    ] , 
-    [
-      a hydra:IriTemplateMapping ;
-        hydra:variable "parent" ;
-        hydra:property skos-api:conceptParent ;
-        hydra:required "true"^^xsd:boolean ;
-    ] , 
-    [
-      a hydra:IriTemplateMapping ;
-        hydra:variable "prefLabel" ;
-        hydra:description "Preferred label in the default language for the newly created concept." ;
-        hydra:property skos-api:prefLabel ;
-        hydra:required "true"^^xsd:boolean ;
-    ] ;
+pp:createConcept a hydra:TemplatedLink , rdf:Property ;
   hydra:supportedOperation [
     a hydra:Operation ;
     hydra:method "POST" ;
     rdfs:label "Create New Concept" ;
     hydra:description "Creates a new SKOS concept in your thesaurus." ;
-    hydra:returns skos-api:Concept ;
+    hydra:returns skos:Concept ;
+    hydra-ext:returnShape [ 
+      a sh:NodeShape ;
+      sh:targetClass skos:Concept ;
+      sh:property
+        [ 
+          sh:path rdf:type ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+          sh:class skos:Concept ;
+        ],
+        [ 
+          sh:path skos-api:uri ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+        ] ;
+      sh:closed true 
+    ] ;
+    hydra-ext:addedDiff [
+      a sh:NodeShape ;
+      sh:targetClass skos:Concept ;
+      sh:property
+        [ 
+          sh:path rdf:type ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+          sh:class skos:Concept ;
+        ] ,
+        [ 
+          sh:path skos-api:uri ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+        ] ,
+        [
+          sh:path skos:topConceptOf ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+        ] ,
+        # is this necessary to add?
+        [
+          sh:inversePath skos:hasTopConcept ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+        ];
+      sh:closed true 
+    ] ;
     hydra:statusCodes 
       [
         hydra:code "200" ;
@@ -118,63 +353,16 @@ pp:CreateConceptMethod a hydra:IriTemplate ;
       ] ,
       pp:BadRequest ;
   ] ;
-  # TODO: should be an IRI
-  api:action "CREATE" ; 
-  api:postCondition [
-    a sh:NodeShape ;
-    sh:targetClass skos-api:Concept ;
-    sh:property 
-      [
-        a sh:PropertyShape ;
-        sh:path skos-api:parent ;
-        sh:nodeKind sh:IRI ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-      ] ,
-      [
-        a sh:PropertyShape ;
-        sh:path skos-api:prefLabel ;
-        sh:nodeKind sh:Literal ;
-        sh:datatype xsd:string ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-      ] ;
-    sh:closed true ;
-  ] ;
 .
 
-pp:GetCompleteConceptMethod a hydra:IriTemplate ;
-  # just grab all skos properties always
-  # excluded param 'workflowStatus' because this is pp sepecific
-  hydra:template "/PoolParty/api/thesaurus/{project}/concept{?concept}&properties=skos:altLabel,skos:hiddenLabel,skos:definition,skos:notation,skos:example,skos:scopeNote,skos:broader,skos:narrower,skos:related,skos:inScheme,skos:exactMatch,skos:closeMatch,skos:broaderMatch,skos:narrowerMatch,skos:relatedMatch,skos:topConceptOf{&language}" ;
-  hydra:variableRepresentation hydra:BasicRepresentation ;
-  hydra:mapping 
-    [
-      a hydra:IriTemplateMapping ;
-        hydra:variable "project" ;
-        hydra:property skos-api:projectId ;
-        hydra:required "true"^^xsd:boolean ;
-    ] , 
-    [
-      a hydra:IriTemplateMapping ;
-        hydra:variable "concept" ;
-        hydra:property skos-api:Concept ;
-        hydra:required "true"^^xsd:boolean ;
-    ] , 
-    [
-    # do we need this language param now?
-      a hydra:IriTemplateMapping ;
-        hydra:variable "language" ;
-        hydra:description "Only concept with label in specified language will be displayed. If no language is given, the default language of the project will be used." ;
-        hydra:property skos-api:labelLanguage ;
-        hydra:required "false"^^xsd:boolean ;
-    ] ;
+pp:getCompleteConcept a hydra:TemplatedLink , rdf:Property ;
   hydra:supportedOperation [
     a hydra:Operation ;
     hydra:method "GET" ;
     rdfs:label "Get complete concept" ;
     hydra:description "Get a complete SKOS concept representation." ;
     hydra:returns skos-api:Concept ;
+    hydra:returnShape pp:ConceptShape ;
     hydra:statusCodes 
       [
         hydra:code "200" ;
@@ -182,69 +370,27 @@ pp:GetCompleteConceptMethod a hydra:IriTemplate ;
       ] ,
       pp:BadRequest ;
   ] ;
-  # TODO: should be an IRI
-  api:action "RETRIEVE" ; 
-  api:postCondition [
-    a sh:NodeShape ;
-    sh:targetClass skos-api:Concept ;
-    sh:property 
-      [
-        a sh:PropertyShape ;
-        sh:path skos-api:parent ;
-        sh:nodeKind sh:IRI ;
-        sh:maxCount 1 ;
-      ] ,
-      [
-        a sh:PropertyShape ;
-        sh:path skos-api:prefLabel ;
-        sh:nodeKind sh:Literal ;
-        sh:datatype xsd:string ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-      ] ,
-      [
-        a sh:PropertyShape ;
-        sh:path skos-api:altLabel ;
-        sh:nodeKind sh:Literal ;
-        sh:datatype xsd:string ;
-      ] 
-      #etc.
-  ] ;
 .
 
-pp:AddPrefLabelMethod a hydra:IriTemplate ;
-  hydra:template "/PoolParty/api/thesaurus/{project}/concept{?concept,label}&property=preferredLabel{&language}" ;
-  hydra:variableRepresentation hydra:BasicRepresentation ;
-  hydra:mapping 
-    [
-      a hydra:IriTemplateMapping ;
-        hydra:variable "project" ;
-        hydra:property skos-api:projectId ;
-        hydra:required "true"^^xsd:boolean ;
-    ] , [
-      a hydra:IriTemplateMapping ;
-        hydra:variable "concept" ;
-        hydra:property skos-api:Concept ;
-        hydra:required "true"^^xsd:boolean ;
-    ] , [
-      a hydra:IriTemplateMapping ;
-        hydra:variable "label" ;
-        hydra:property skos-api:prefLabel ;
-        hydra:required "true"^^xsd:boolean ;
-    ] , [
-      a hydra:IriTemplateMapping ;
-        hydra:variable "language" ;
-        hydra:description "The language of the literal - default language if not defined" ;
-        hydra:property skos-api:labelLanguage ;
-        hydra:required "false"^^xsd:boolean ;
-    ] ;
+pp:addPrefLabel a hydra:TemplatedLink , rdf:Property ;
   hydra:supportedOperation [
     a hydra:Operation ;
     hydra:method "POST" ;
     rdfs:label "Add prefLabel" ;
     hydra:description "Adds a preferred label to an existing SKOS concept." ;
-    # does this make sense?
-    hydra:returns owl:Nothing ;
+    hydra-ext:addedDiff [ 
+      a sh:NodeShape ;
+      sh:targetClass skos:Concept ;
+      sh:property [
+        sh:path skos:prefLabel ;
+        sh:nodeKind sh:Literal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 1 ;
+      ] ;
+      # should this be a closed shape?
+      sh:closed true 
+    ] ;
     hydra:statusCodes 
       [
         hydra:code "200" ;
@@ -254,42 +400,25 @@ pp:AddPrefLabelMethod a hydra:IriTemplate ;
   ]
 .
 
-pp:AddAltLabelMethod a hydra:IriTemplate ;
-  hydra:template "/PoolParty/api/thesaurus/{project}/concept{?concept,label}&property=alternativeLabel{&language}" ;
-  hydra:variableRepresentation hydra:BasicRepresentation ;
-  hydra:mapping 
-    [
-      a hydra:IriTemplateMapping ;
-        hydra:variable "project" ;
-        hydra:property skos-api:inProject ;
-        hydra:required "true"^^xsd:boolean ;
-    ] , 
-    [
-      a hydra:IriTemplateMapping ;
-        hydra:variable "concept" ;
-        hydra:property skos:Concept ;
-        hydra:required "true"^^xsd:boolean ;
-    ] , 
-    [
-      a hydra:IriTemplateMapping ;
-        hydra:variable "label" ;
-        hydra:property skos:altLabel ;
-        hydra:required "true"^^xsd:boolean ;
-    ] , 
-    [
-      a hydra:IriTemplateMapping ;
-        hydra:variable "language" ;
-        hydra:description "The language of the literal - default language if not defined" ;
-        hydra:property skos-api:labelLanguage ;
-        hydra:required "false"^^xsd:boolean ;
-    ] ;
+pp:addAltLabel a hydra:TemplatedLink , rdf:Property ;
   hydra:supportedOperation [
     a hydra:Operation ;
     hydra:method "POST" ;
     rdfs:label "Add altLabel" ;
     hydra:description "Adds an alternative label to an existing SKOS concept." ;
-    # does this make sense?
-    hydra:returns owl:Nothing ;
+    hydra-ext:addedDiff [ 
+      a sh:NodeShape ;
+      sh:targetClass skos:Concept ;
+      sh:property [
+        sh:path skos:altLabel ;
+        sh:nodeKind sh:Literal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 1 ;
+      ] ;
+      # should this be a closed shape?
+      sh:closed true 
+    ] ;
     hydra:statusCodes 
       [
         hydra:code "200" ;
@@ -297,4 +426,123 @@ pp:AddAltLabelMethod a hydra:IriTemplate ;
       ] ,
       pp:BadRequest ;
   ]
+.
+
+pp:deleteAltLabel a hydra:TemplatedLink , rdf:Property ;
+  hydra:supportedOperation [
+    a hydra:Operation ;
+    hydra:method "POST" ;
+    rdfs:label "Delete altLabel" ;
+    hydra:description "Deletes an alternative label from an existing SKOS concept." ;
+    hydra-ext:deletedDiff [ 
+      a sh:NodeShape ;
+      sh:targetClass skos:Concept ;
+      sh:property [
+        sh:path skos:altLabel ;
+        sh:nodeKind sh:Literal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 1 ;
+      ] ;
+      # should this be a closed shape?
+      sh:closed true 
+    ] ;
+    hydra:statusCodes 
+      [
+        hydra:code "200" ;
+        hydra:description "If the addition was successful."
+      ] ,
+      pp:BadRequest ;
+  ]
+.
+
+# Reusable shapes
+
+pp:ConceptShape a sh:NodeShape ;
+  sh:targetClass skos-api:Concept ;
+  sh:property
+    [ 
+      sh:path skos-api:uri ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+      sh:nodeKind sh:IRI ;
+    ] ,
+    [
+      sh:path skos-api:parent ;
+      sh:nodeKind sh:IRI ;
+      sh:maxCount 1 ;
+    ] ,
+    [
+      sh:path skos:prefLabel ;
+      sh:nodeKind sh:Literal ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+      sh:minLength 1 ;
+    ] ,
+    [
+      sh:path skos:altLabel ;
+      sh:nodeKind sh:Literal ;
+    ] ,
+    [
+      sh:path skos:hiddenLabel ;
+      sh:nodeKind sh:Literal ;
+    ] ,
+    [
+      sh:path skos:definition ;
+      sh:nodeKind sh:Literal ;
+    ] ,
+    [
+      sh:path skos:notation ;
+      sh:nodeKind sh:Literal ;
+    ] ,
+    [
+      sh:path skos:example ;
+      sh:nodeKind sh:Literal ;
+    ] ,
+    [
+      sh:path skos:scopeNote ;
+      sh:nodeKind sh:Literal ;
+    ] , 
+    [
+      sh:path skos:inScheme ;
+      sh:nodeKind sh:IRI ;
+      sh:minCount 1 ;
+      sh:maxCount 1 ;
+    ] ,
+    [
+      sh:path skos:topConceptOf ;
+      sh:nodeKind sh:IRI ;
+    ] ,
+    [
+      sh:path skos:broader ;
+      sh:nodeKind sh:IRI ;
+    ] ,
+    [
+      sh:path skos:narrower ;
+      sh:nodeKind sh:IRI ;
+    ] ,
+    [
+      sh:path skos:related ;
+      sh:nodeKind sh:IRI ;
+    ] ,
+    [
+      sh:path skos:exactMatch ;
+      sh:nodeKind sh:IRI ;
+    ] ,
+    [
+      sh:path skos:closeMatch ;
+      sh:nodeKind sh:IRI ;
+    ] ,
+    [
+      sh:path skos:broaderMatch ;
+      sh:nodeKind sh:IRI ;
+    ] ,
+    [
+      sh:path skos:narrowerMatch ;
+      sh:nodeKind sh:IRI ;
+    ] ,
+    [
+      sh:path skos:relatedMatch ;
+      sh:nodeKind sh:IRI ;
+    ] ;
 .
