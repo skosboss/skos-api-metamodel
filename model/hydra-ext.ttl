@@ -1,0 +1,24 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix hydra: <http://www.w3.org/ns/hydra/core#> .
+@prefix hydra-ext: <http://skos-api.org/hydra-extended#> .
+
+hydra-ext: owl:imports hydra: .
+
+hydra-ext:returnShape a rdf:Property ;
+  rdfs:domain hydra:Operation ;
+  rdfs:range sh:Shape ;
+.
+
+hydra-ext:addedDiff a rdf:Property ;
+  rdfs:domain hydra:Operation ;
+  rdfs:range sh:Shape ;
+.
+
+hydra-ext:deletedDiff a rdf:Property ;
+  rdfs:domain hydra:Operation ;
+  rdfs:range sh:Shape ;
+.

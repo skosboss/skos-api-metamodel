@@ -1,0 +1,265 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix hydra: <http://www.w3.org/ns/hydra/core#> .
+@prefix hydra-ext: <http://skos-api.org/hydra-extended#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix pp: <http://someapivendor.com/api/> .
+@prefix skos-api: <http://skos-api.org/metamodel#> .
+
+pp:api a pp:Entrypoint;
+  pp:createConceptScheme [
+    a hydra:IriTemplate ;
+    hydra:template "/PoolParty/api/thesaurus/{project}/createConceptScheme{?title}" ;
+    hydra:variableRepresentation hydra:BasicRepresentation ;
+    hydra:mapping 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "project" ;
+          # might need to do more here to figure out the project id.
+          # possibly allow a SHACL style path like ( skos-api:inProject skos-api:projectId )
+          # or use skos-api:projectId directly
+          # or attribute every entity a skos-api:projectId
+          hydra:property skos-api:inProject ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "title" ;
+          hydra:property skos-api:title ;
+          hydra:required "true"^^xsd:boolean ;
+      ]
+  ] ;
+  pp:getConceptSchemes [
+    a hydra:IriTemplate ;
+    hydra:template "/PoolParty/api/thesaurus/{project}/schemes" ;
+    hydra:variableRepresentation hydra:BasicRepresentation ;
+    hydra:mapping [
+      a hydra:IriTemplateMapping ;
+        hydra:variable "project" ;
+        hydra:property skos-api:inProject ;
+        hydra:required "true"^^xsd:boolean ;
+    ]
+  ] ;
+  pp:getTopConcepts [
+    a hydra:IriTemplate ;
+    hydra:template "/PoolParty/api/thesaurus/{project}/topconcepts{?scheme}&properties=skos:altLabel,skos:hiddenLabel,skos:definition,skos:notation,skos:example,skos:scopeNote,skos:broader,skos:narrower,skos:related,skos:inScheme,skos:exactMatch,skos:closeMatch,skos:broaderMatch,skos:narrowerMatch,skos:relatedMatch,skos:topConceptOf{&language}" ;
+    hydra:variableRepresentation hydra:BasicRepresentation ;
+    hydra:mapping 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "project" ;
+          hydra:property skos-api:inProject ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "scheme" ;
+          hydra:property skos-api:uri ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , 
+      [
+      # do we need this language param now?
+        a hydra:IriTemplateMapping ;
+          hydra:variable "language" ;
+          hydra:description "Only concept with label in specified language will be displayed. If no language is given, the default language of the project will be used." ;
+          hydra:property skos-api:labelLanguage ;
+          hydra:required "false"^^xsd:boolean ;
+      ] ;
+  ] ;
+  pp:getChildConcepts [
+    a hydra:IriTemplate ;
+    hydra:template "/PoolParty/api/thesaurus/{project}/childconcepts{?parent}&properties=skos:altLabel,skos:hiddenLabel,skos:definition,skos:notation,skos:example,skos:scopeNote,skos:broader,skos:narrower,skos:related,skos:inScheme,skos:exactMatch,skos:closeMatch,skos:broaderMatch,skos:narrowerMatch,skos:relatedMatch,skos:topConceptOf{&language}" ;
+    hydra:variableRepresentation hydra:BasicRepresentation ;
+    hydra:mapping 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "project" ;
+          hydra:property skos-api:inProject ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "parent" ;
+          hydra:property skos-api:parent ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , 
+      [
+      # do we need this language param now?
+        a hydra:IriTemplateMapping ;
+          hydra:variable "language" ;
+          hydra:description "Only concept with label in specified language will be displayed. If no language is given, the default language of the project will be used." ;
+          hydra:property skos-api:labelLanguage ;
+          hydra:required "false"^^xsd:boolean ;
+      ] ;
+  ] ;
+  pp:createTopConcept [
+    a hydra:IriTemplate ;
+    hydra:template "/PoolParty/api/thesaurus/{project}/createConcept{?parent,prefLabel}" ;
+    hydra:variableRepresentation hydra:BasicRepresentation ;
+    hydra:mapping 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "project" ;
+          hydra:property skos-api:inProject ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "parent" ;
+          hydra:property skos-api:parent ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "prefLabel" ;
+          hydra:property skos:prefLabel ;
+          hydra:required "true"^^xsd:boolean ;
+      ] ;
+  ] ;
+  pp:createConcept [
+    a hydra:IriTemplate ;
+    hydra:template "/PoolParty/api/thesaurus/{project}/createConcept{?parent,prefLabel}" ;
+    hydra:variableRepresentation hydra:BasicRepresentation ;
+    hydra:mapping 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "project" ;
+          hydra:property skos-api:inProject ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "parent" ;
+          hydra:property skos-api:conceptParent ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "prefLabel" ;
+          hydra:description "Preferred label in the default language for the newly created concept." ;
+          hydra:property skos-api:prefLabel ;
+          hydra:required "true"^^xsd:boolean ;
+      ] ;
+  ] ; 
+  pp:getCompleteConcept [
+    a hydra:IriTemplate ;
+    # just grab all skos properties always
+    # excluded param 'workflowStatus' because this is pp sepecific
+    hydra:template "/PoolParty/api/thesaurus/{project}/concept{?concept}&properties=skos:altLabel,skos:hiddenLabel,skos:definition,skos:notation,skos:example,skos:scopeNote,skos:broader,skos:narrower,skos:related,skos:inScheme,skos:exactMatch,skos:closeMatch,skos:broaderMatch,skos:narrowerMatch,skos:relatedMatch,skos:topConceptOf{&language}" ;
+    hydra:variableRepresentation hydra:BasicRepresentation ;
+    hydra:mapping 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "project" ;
+          hydra:property skos-api:inProject ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "concept" ;
+          hydra:property skos:Concept ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , 
+      [
+      # do we need this language param now?
+        a hydra:IriTemplateMapping ;
+          hydra:variable "language" ;
+          hydra:description "Only concept with label in specified language will be displayed. If no language is given, the default language of the project will be used." ;
+          hydra:property skos-api:labelLanguage ;
+          hydra:required "false"^^xsd:boolean ;
+      ] ;
+    ] ;
+  pp:addPrefLabel [
+    a hydra:IriTemplate ;
+    hydra:template "/PoolParty/api/thesaurus/{project}/concept{?concept,label}&property=preferredLabel{&language}" ;
+    hydra:variableRepresentation hydra:BasicRepresentation ;
+    hydra:mapping 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "project" ;
+          hydra:property skos-api:inProject ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "concept" ;
+          hydra:property skos-api:Concept ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "label" ;
+          hydra:property skos-api:prefLabel ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "language" ;
+          hydra:description "The language of the literal - default language if not defined" ;
+          hydra:property skos-api:labelLanguage ;
+          hydra:required "false"^^xsd:boolean ;
+      ] ;
+  ] ;
+  pp:addAltLabel [
+    a hydra:IriTemplate ;
+    hydra:template "/PoolParty/api/thesaurus/{project}/concept{?concept,label}&property=alternativeLabel{&language}" ;
+    hydra:variableRepresentation hydra:BasicRepresentation ;
+    hydra:mapping 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "project" ;
+          hydra:property skos-api:inProject ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "concept" ;
+          hydra:property skos:Concept ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "label" ;
+          hydra:property skos:altLabel ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "language" ;
+          hydra:description "The language of the literal - default language if not defined" ;
+          hydra:property skos-api:labelLanguage ;
+          hydra:required "false"^^xsd:boolean ;
+      ] ;
+  ] ;
+  pp:deleteAltLabel [
+    a hydra:IriTemplate ;
+    hydra:template "/PoolParty/api/thesaurus/{project}/removeLiteral{?concept,label}&property=alternativeLabel{&language}" ;
+    hydra:variableRepresentation hydra:BasicRepresentation ;
+    hydra:mapping 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "project" ;
+          hydra:property skos-api:inProject ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "concept" ;
+          hydra:property skos:Concept ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "label" ;
+          hydra:property skos:altLabel ;
+          hydra:required "true"^^xsd:boolean ;
+      ] , 
+      [
+        a hydra:IriTemplateMapping ;
+          hydra:variable "language" ;
+          hydra:description "The language of the literal - default language if not defined" ;
+          hydra:property skos-api:labelLanguage ;
+          hydra:required "false"^^xsd:boolean ;
+      ] ;
+  ] ;
+.
