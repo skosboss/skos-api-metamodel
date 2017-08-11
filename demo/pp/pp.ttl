@@ -62,7 +62,7 @@ pp:createConceptScheme a hydra:TemplatedLink , rdf:Property ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
-          sh:class skos:ConceptScheme ;
+          sh:hasValue skos:ConceptScheme ;
         ] ,
         [ 
           sh:path skos-api:uri ;
@@ -81,7 +81,7 @@ pp:createConceptScheme a hydra:TemplatedLink , rdf:Property ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
-          sh:class skos:ConceptScheme ;
+          sh:hasValue skos:ConceptScheme ;
         ] ,
         [ 
           sh:path skos-api:uri ;
@@ -139,7 +139,7 @@ pp:getConceptSchemes a hydra:TemplatedLink , rdf:Property ;
               sh:minCount 1 ;
               sh:maxCount 1 ;
               sh:nodeKind sh:IRI ;
-              sh:class skos:ConceptScheme ;
+              sh:hasValue skos:ConceptScheme ;
             ] ,
             [ 
               sh:path skos-api:uri ;
@@ -237,7 +237,7 @@ pp:createTopConcept a hydra:TemplatedLink , rdf:Property ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
-          sh:class skos:Concept ;
+          sh:hasValue skos:Concept ;
         ],
         [ 
           sh:path skos-api:uri ;
@@ -256,7 +256,7 @@ pp:createTopConcept a hydra:TemplatedLink , rdf:Property ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
-          sh:class skos:Concept ;
+          sh:hasValue skos:Concept ;
         ] ,
         [ 
           sh:path skos-api:uri ;
@@ -304,7 +304,7 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
-          sh:class skos:Concept ;
+          sh:hasValue skos:Concept ;
         ],
         [ 
           sh:path skos-api:uri ;
@@ -323,7 +323,7 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
-          sh:class skos:Concept ;
+          sh:hasValue skos:Concept ;
         ] ,
         [ 
           sh:path skos-api:uri ;
