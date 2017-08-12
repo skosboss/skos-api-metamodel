@@ -20,19 +20,69 @@ pp:doc a hydra:ApiDocumentation ;
 
 pp:EntryPoint a hydra:Class ;
   hydra:supportedProperty
-    pp:createConceptScheme ,
-    pp:getConceptSchemes ,
-    pp:getTopConcepts ,
-    pp:getChildConcepts ,
+    [
+      hydra:property pp:createConceptScheme ;
+      hydra:title "Create concept scheme" ;
+      hydra:readable false ;
+      hydra:writable true ;
+    ] ,
+    [
+      hydra:property pp:getConceptSchemes ;
+      hydra:title "Get concept schemes" ;
+      hydra:readable true ;
+      hydra:writable false ;
+    ] ,
+    [
+      hydra:property pp:getTopConcepts ;
+      hydra:title "Get top concept" ;
+      hydra:readable true ;
+      hydra:writable false ;
+    ] ,
+    [
+      hydra:property pp:getChildConcepts ;
+      hydra:title "Get child concepts" ;
+      hydra:readable true ;
+      hydra:writable false ;
+    ] ,
       #TODO
       #pp:getSubTree ,
       #pp:deleteConceptScheme ,
-    pp:createTopConcept ,
-    pp:createConcept , 
-    pp:getCompleteConcept ,
-    pp:addPrefLabel ,
-    pp:addAltLabel ,
-    pp:deleteAltLabel ;
+    [
+      hydra:property pp:createTopConcept ;
+      hydra:title "Create top concept" ;
+      hydra:readable false ;
+      hydra:writable true ;
+    ] ,
+    [
+      hydra:property pp:createConcept ;
+      hydra:title "Create concept" ;
+      hydra:readable false ;
+      hydra:writable true ;
+    ] , 
+    [
+      hydra:property pp:getCompleteConcept ;
+      hydra:title "Get complete concept" ;
+      hydra:readable true ;
+      hydra:writable false ;
+    ] ,
+    [
+      hydra:property pp:addPrefLabel ;
+      hydra:title "Add preferred label" ;
+      hydra:readable false ;
+      hydra:writable true ;
+    ] ,
+    [
+      hydra:property pp:addAltLabel ;
+      hydra:title "Add alternative label" ;
+      hydra:readable false ;
+      hydra:writable true ;
+    ] ,
+    [
+      hydra:property pp:deleteAltLabel ;
+      hydra:title "Delete alternative label" ;
+      hydra:readable false ;
+      hydra:writable true ;
+    ] ;
 .
 
 pp:createConceptScheme a hydra:TemplatedLink , rdf:Property ;
@@ -126,7 +176,7 @@ pp:getConceptSchemes a hydra:TemplatedLink , rdf:Property ;
     hydra:description "Returns a list of all concept schemes in the given project." ;
     hydra:returns hydra:Collection ;
     hydra-ext:returnShape [
-      a hydra:Collection ;
+      a sh:NodeShape ;
       sh:targetClass hydra:Collection ;
       sh:property
         [ 
