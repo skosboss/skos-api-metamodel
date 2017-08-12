@@ -222,7 +222,7 @@ pp:getTopConcepts a hydra:TemplatedLink , rdf:Property ;
     hydra:description "Returns a list of direct top concepts for a concept scheme." ;
     hydra:returns hydra:Collection ;
     hydra-ext:returnShape [
-      a hydra:Collection ;
+      a sh:NodeShape ;
       sh:targetClass hydra:Collection ;
       sh:property [ 
         sh:path sh:member ;
@@ -245,7 +245,7 @@ pp:getChildConcepts a hydra:TemplatedLink , rdf:Property ;
     hydra:description "Returns a list of narrower concepts of a given concept or concept scheme." ;
     hydra:returns hydra:Collection ;
     hydra-ext:returnShape [
-      a hydra:Collection ;
+      a sh:NodeShape ;
       sh:targetClass hydra:Collection ;
       sh:property [ 
         sh:path sh:member ;
