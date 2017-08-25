@@ -45,7 +45,7 @@ pp:api a pp:Entrypoint;
   ] ;
   pp:getTopConcepts [
     a hydra:IriTemplate ;
-    hydra:template "/PoolParty/api/thesaurus/{project}/topconcepts{?scheme}&properties=skos:altLabel,skos:hiddenLabel,skos:definition,skos:notation,skos:example,skos:scopeNote,skos:broader,skos:narrower,skos:related,skos:inScheme,skos:exactMatch,skos:closeMatch,skos:broaderMatch,skos:narrowerMatch,skos:relatedMatch,skos:topConceptOf{&language}" ;
+    hydra:template "/PoolParty/api/thesaurus/{project}/topconcepts{?scheme}&properties=skos:altLabel,skos:hiddenLabel,skos:definition,skos:notation,skos:example,skos:scopeNote,skos:broader,skos:narrower,skos:related,skos:ConceptScheme,skos:exactMatch,skos:closeMatch,skos:broadMatch,skos:narrowMatch,skos:relatedMatch,skos:topConceptOf{&language}" ;
     hydra:variableRepresentation hydra:BasicRepresentation ;
     hydra:mapping 
       [
@@ -71,7 +71,7 @@ pp:api a pp:Entrypoint;
   ] ;
   pp:getChildConcepts [
     a hydra:IriTemplate ;
-    hydra:template "/PoolParty/api/thesaurus/{project}/childconcepts{?parent}&properties=skos:altLabel,skos:hiddenLabel,skos:definition,skos:notation,skos:example,skos:scopeNote,skos:broader,skos:narrower,skos:related,skos:inScheme,skos:exactMatch,skos:closeMatch,skos:broaderMatch,skos:narrowerMatch,skos:relatedMatch,skos:topConceptOf{&language}" ;
+    hydra:template "/PoolParty/api/thesaurus/{project}/childconcepts{?parent}&properties=skos:altLabel,skos:hiddenLabel,skos:definition,skos:notation,skos:example,skos:scopeNote,skos:broader,skos:narrower,skos:related,skos:ConceptScheme,skos:exactMatch,skos:closeMatch,skos:broadMatch,skos:narrowMatch,skos:relatedMatch,skos:topConceptOf{&language}" ;
     hydra:variableRepresentation hydra:BasicRepresentation ;
     hydra:mapping 
       [
@@ -148,7 +148,7 @@ pp:api a pp:Entrypoint;
     a hydra:IriTemplate ;
     # just grab all skos properties always
     # excluded param 'workflowStatus' because this is pp sepecific
-    hydra:template "/PoolParty/api/thesaurus/{project}/concept{?concept}&properties=skos:altLabel,skos:hiddenLabel,skos:definition,skos:notation,skos:example,skos:scopeNote,skos:broader,skos:narrower,skos:related,skos:inScheme,skos:exactMatch,skos:closeMatch,skos:broaderMatch,skos:narrowerMatch,skos:relatedMatch,skos:topConceptOf{&language}" ;
+    hydra:template "/PoolParty/api/thesaurus/{project}/concept{?concept}&properties=skos:altLabel,skos:hiddenLabel,skos:definition,skos:notation,skos:example,skos:scopeNote,skos:broader,skos:narrower,skos:related,skos:ConceptScheme,skos:exactMatch,skos:closeMatch,skos:broadMatch,skos:narrowMatch,skos:relatedMatch,skos:topConceptOf{&language}" ;
     hydra:variableRepresentation hydra:BasicRepresentation ;
     hydra:mapping 
       [
