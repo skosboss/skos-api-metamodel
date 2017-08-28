@@ -18,7 +18,7 @@ pp:doc a hydra:ApiDocumentation ;
   hydra:entrypoint pp:api ;
 .
 
-pp:EntryPoint a hydra:Class ;
+pp:Entrypoint a hydra:Class ;
   hydra:supportedProperty
     [
       hydra:property pp:createConceptScheme ;
