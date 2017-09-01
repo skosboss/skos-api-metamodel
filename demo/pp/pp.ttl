@@ -58,7 +58,7 @@ pp:Entrypoint a hydra:Class ;
       hydra:title "Create concept" ;
       hydra:readable false ;
       hydra:writable true ;
-    ] , 
+    ] ,
     [
       hydra:property pp:getCompleteConcept ;
       hydra:title "Get complete concept" ;
@@ -103,37 +103,37 @@ pp:createConceptScheme a hydra:TemplatedLink , rdf:Property ;
     #  "@type" : "skos:ConceptScheme" ,
     #  "skos-api:uri" : "http://blabla.net/conceptscheme/123"
     #}
-    hydra-ext:returnShape [ 
+    hydra-ext:returnShape [
       a sh:NodeShape ;
       sh:targetClass rdfs:Resource ;
       sh:property
-        [ 
+        [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 1 ;
+          sh:maxCount 2 ;
           sh:nodeKind sh:IRI ;
-          sh:hasValue skos:ConceptScheme ;
+          sh:in ( skos:ConceptScheme rdfs:Resource) ;
         ] ,
-        [ 
+        [
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
         ] ;
-      sh:closed true 
+      sh:closed true
     ] ;
-    hydra-ext:addedDiff [ 
+    hydra-ext:addedDiff [
       a sh:NodeShape ;
       sh:targetClass rdfs:Resource ;
       sh:property
-        [ 
+        [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 1 ;
+          sh:maxCount 2 ;
           sh:nodeKind sh:IRI ;
-          sh:hasValue skos:ConceptScheme ;
+          sh:in ( skos:ConceptScheme rdfs:Resource) ;
         ] ,
-        [ 
+        [
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
@@ -157,7 +157,7 @@ pp:createConceptScheme a hydra:TemplatedLink , rdf:Property ;
           sh:nodeKind sh:Literal ;
         ];
       # should this be a closed shape?
-      sh:closed true 
+      sh:closed true
     ] ;
     hydra:statusCodes
       [
@@ -179,26 +179,26 @@ pp:getConceptSchemes a hydra:TemplatedLink , rdf:Property ;
       a sh:NodeShape ;
       sh:targetClass rdfs:Resource ;
       sh:property
-        [ 
+        [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 1 ;
+          sh:maxCount 2 ;
           sh:nodeKind sh:IRI ;
-          sh:hasValue hydra:Collection ;
+          sh:in ( hydra:Collection rdfs:Resource) ;
         ] ,
-        [ 
+        [
           sh:path sh:member ;
-          sh:node 
+          sh:node
             [
               a sh:NodeShape ;
               sh:property [
               sh:path rdf:type ;
               sh:minCount 1 ;
-              sh:maxCount 1 ;
+              sh:maxCount 2 ;
               sh:nodeKind sh:IRI ;
-              sh:hasValue skos:ConceptScheme ;
+              sh:in ( skos:ConceptScheme rdfs:Resource) ;
             ] ,
-            [ 
+            [
               sh:path skos-api:uri ;
               sh:minCount 1 ;
               sh:maxCount 1 ;
@@ -213,7 +213,7 @@ pp:getConceptSchemes a hydra:TemplatedLink , rdf:Property ;
           ]
         ] ;
     ] ;
-    hydra:statusCodes 
+    hydra:statusCodes
       [
         hydra:code "200" ;
       ] ,
@@ -232,19 +232,19 @@ pp:getTopConcepts a hydra:TemplatedLink , rdf:Property ;
       a sh:NodeShape ;
       sh:targetClass rdfs:Resource ;
       sh:property
-        [ 
+        [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 1 ;
+          sh:maxCount 2 ;
           sh:nodeKind sh:IRI ;
-          sh:hasValue hydra:Collection ;
-        ] , 
-        [ 
+          sh:in ( hydra:Collection rdfs:Resource) ;
+        ] ,
+        [
           sh:path sh:member ;
           sh:node pp:ConceptShape ;
         ] ;
     ] ;
-    hydra:statusCodes 
+    hydra:statusCodes
       [
         hydra:code "200" ;
       ] ,
@@ -263,19 +263,19 @@ pp:getChildConcepts a hydra:TemplatedLink , rdf:Property ;
       a sh:NodeShape ;
       sh:targetClass rdfs:Resource ;
       sh:property
-        [ 
+        [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 1 ;
+          sh:maxCount 2 ;
           sh:nodeKind sh:IRI ;
-          sh:hasValue hydra:Collection ;
-        ] , 
-        [ 
+          sh:in ( hydra:Collection rdfs:Resource) ;
+        ] ,
+        [
           sh:path sh:member ;
           sh:node pp:ConceptShape ;
         ] ;
     ] ;
-    hydra:statusCodes 
+    hydra:statusCodes
       [
         hydra:code "200" ;
       ] ,
@@ -301,37 +301,37 @@ pp:createTopConcept a hydra:TemplatedLink , rdf:Property ;
     #  "@type" : "skos:Concept",
     #  "skos-api:uri" : "http://blabla.net/concept/123"
     #}
-    hydra-ext:returnShape [ 
+    hydra-ext:returnShape [
       a sh:NodeShape ;
       sh:targetClass rdfs:Resource ;
       sh:property
-        [ 
+        [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 1 ;
+          sh:maxCount 2 ;
           sh:nodeKind sh:IRI ;
-          sh:hasValue skos:Concept ;
+          sh:in ( skos:Concept rdfs:Resource) ;
         ],
-        [ 
+        [
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
         ] ;
-      sh:closed true 
+      sh:closed true
     ] ;
-    hydra-ext:addedDiff [ 
+    hydra-ext:addedDiff [
       a sh:NodeShape ;
       sh:targetClass rdfs:Resource ;
       sh:property
-        [ 
+        [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 1 ;
+          sh:maxCount 2 ;
           sh:nodeKind sh:IRI ;
-          sh:hasValue skos:Concept ;
+          sh:in ( skos:Concept rdfs:Resource) ;
         ] ,
-        [ 
+        [
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
@@ -350,9 +350,9 @@ pp:createTopConcept a hydra:TemplatedLink , rdf:Property ;
           sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
         ];
-      sh:closed true 
+      sh:closed true
     ] ;
-    hydra:statusCodes 
+    hydra:statusCodes
       [
         hydra:code "200" ;
         hydra:description "If the top concept was created."
@@ -368,37 +368,37 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
     rdfs:label "Create New Concept" ;
     hydra:description "Creates a new SKOS concept in your thesaurus." ;
     hydra:returns skos:Concept ;
-    hydra-ext:returnShape [ 
+    hydra-ext:returnShape [
       a sh:NodeShape ;
       sh:targetClass rdfs:Resource ;
       sh:property
-        [ 
+        [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 1 ;
+          sh:maxCount 2 ;
           sh:nodeKind sh:IRI ;
-          sh:hasValue skos:Concept ;
+          sh:in ( skos:Concept rdfs:Resource) ;
         ],
-        [ 
+        [
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
         ] ;
-      sh:closed true 
+      sh:closed true
     ] ;
     hydra-ext:addedDiff [
       a sh:NodeShape ;
       sh:targetClass rdfs:Resource ;
       sh:property
-        [ 
+        [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 1 ;
+          sh:maxCount 2 ;
           sh:nodeKind sh:IRI ;
-          sh:hasValue skos:Concept ;
+          sh:in ( skos:Concept rdfs:Resource) ;
         ] ,
-        [ 
+        [
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
@@ -417,9 +417,9 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
           sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
         ];
-      sh:closed true 
+      sh:closed true
     ] ;
-    hydra:statusCodes 
+    hydra:statusCodes
       [
         hydra:code "200" ;
         hydra:description "If the concept was created."
@@ -436,7 +436,7 @@ pp:getCompleteConcept a hydra:TemplatedLink , rdf:Property ;
     hydra:description "Get a complete SKOS concept representation." ;
     hydra:returns skos-api:Concept ;
     hydra:returnShape pp:ConceptShape ;
-    hydra:statusCodes 
+    hydra:statusCodes
       [
         hydra:code "200" ;
         hydra:description "If the Concept was created."
@@ -451,17 +451,17 @@ pp:addPrefLabel a hydra:TemplatedLink , rdf:Property ;
     hydra:method "POST" ;
     rdfs:label "Add prefLabel" ;
     hydra:description "Adds a preferred label to an existing SKOS concept." ;
-    hydra-ext:addedDiff [ 
+    hydra-ext:addedDiff [
       a sh:NodeShape ;
       sh:targetClass rdfs:Resource ;
       sh:property
-        [ 
+        [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 1 ;
+          sh:maxCount 2 ;
           sh:nodeKind sh:IRI ;
-          sh:hasValue skos:Concept ;
-        ] , 
+          sh:in ( skos:Concept rdfs:Resource) ;
+        ] ,
         [
           sh:path skos:prefLabel ;
           sh:nodeKind sh:Literal ;
@@ -470,9 +470,9 @@ pp:addPrefLabel a hydra:TemplatedLink , rdf:Property ;
           sh:minLength 1 ;
         ] ;
       # should this be a closed shape?
-      sh:closed true 
+      sh:closed true
     ] ;
-    hydra:statusCodes 
+    hydra:statusCodes
       [
         hydra:code "200" ;
         hydra:description "If the addition was successful."
@@ -487,18 +487,18 @@ pp:addAltLabel a hydra:TemplatedLink , rdf:Property ;
     hydra:method "POST" ;
     rdfs:label "Add altLabel" ;
     hydra:description "Adds an alternative label to an existing SKOS concept." ;
-    hydra-ext:addedDiff [ 
+    hydra-ext:addedDiff [
       a sh:NodeShape ;
       sh:targetClass rdfs:Resource ;
       sh:property
-        [ 
+        [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 1 ;
+          sh:maxCount 2 ;
           sh:nodeKind sh:IRI ;
-          sh:hasValue skos:Concept ;
+          sh:in ( skos:Concept rdfs:Resource) ;
         ] ,
-        [ 
+        [
           sh:path skos:altLabel ;
           sh:nodeKind sh:Literal ;
           sh:minCount 1 ;
@@ -506,9 +506,9 @@ pp:addAltLabel a hydra:TemplatedLink , rdf:Property ;
           sh:minLength 1 ;
         ] ;
       # should this be a closed shape?
-      sh:closed true 
+      sh:closed true
     ] ;
-    hydra:statusCodes 
+    hydra:statusCodes
       [
         hydra:code "200" ;
         hydra:description "If the addition was successful."
@@ -523,17 +523,17 @@ pp:deleteAltLabel a hydra:TemplatedLink , rdf:Property ;
     hydra:method "POST" ;
     rdfs:label "Delete altLabel" ;
     hydra:description "Deletes an alternative label from an existing SKOS concept." ;
-    hydra-ext:deletedDiff [ 
+    hydra-ext:deletedDiff [
       a sh:NodeShape ;
       sh:targetClass rdfs:Resource ;
       sh:property
-        [ 
+        [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 1 ;
+          sh:maxCount 2 ;
           sh:nodeKind sh:IRI ;
-          sh:hasValue skos:Concept ;
-        ] , 
+          sh:in ( skos:Concept rdfs:Resource) ;
+        ] ,
         [
           sh:path skos:altLabel ;
           sh:nodeKind sh:Literal ;
@@ -542,9 +542,9 @@ pp:deleteAltLabel a hydra:TemplatedLink , rdf:Property ;
           sh:minLength 1 ;
         ] ;
       # should this be a closed shape?
-      sh:closed true 
+      sh:closed true
     ] ;
-    hydra:statusCodes 
+    hydra:statusCodes
       [
         hydra:code "200" ;
         hydra:description "If the addition was successful."
@@ -559,14 +559,14 @@ pp:ConceptShape a sh:NodeShape ;
   sh:targetClass skos-api:Concept ;
   sh:targetClass rdfs:Resource ;
   sh:property
-    [ 
+    [
       sh:path rdf:type ;
       sh:minCount 1 ;
-      sh:maxCount 1 ;
+      sh:maxCount 2 ;
       sh:nodeKind sh:IRI ;
-      sh:hasValue skos:Concept ;
-    ] , 
-    [ 
+      sh:in ( skos:Concept rdfs:Resource) ;
+    ] ,
+    [
       sh:path skos-api:uri ;
       sh:minCount 1 ;
       sh:maxCount 1 ;
@@ -607,7 +607,7 @@ pp:ConceptShape a sh:NodeShape ;
     [
       sh:path skos:scopeNote ;
       sh:nodeKind sh:Literal ;
-    ] , 
+    ] ,
     [
       sh:path skos:inScheme ;
       sh:nodeKind sh:IRI ;
