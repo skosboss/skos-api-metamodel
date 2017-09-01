@@ -118,7 +118,7 @@ pp:createConceptScheme a hydra:TemplatedLink , rdf:Property ;
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
-          sh:nodeKind sh:IRI ;
+          sh:nodeKind sh:Literal ;
         ] ;
       sh:closed true
     ] ;
@@ -137,7 +137,7 @@ pp:createConceptScheme a hydra:TemplatedLink , rdf:Property ;
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
-          sh:nodeKind sh:IRI ;
+          sh:nodeKind sh:Literal ;
         ] ,
         [
           sh:path skos-api:inProject ;
@@ -202,7 +202,7 @@ pp:getConceptSchemes a hydra:TemplatedLink , rdf:Property ;
               sh:path skos-api:uri ;
               sh:minCount 1 ;
               sh:maxCount 1 ;
-              sh:nodeKind sh:IRI ;
+              sh:nodeKind sh:Literal ;
             ] ,
             [
               sh:path skos-api:title ;
@@ -316,7 +316,7 @@ pp:createTopConcept a hydra:TemplatedLink , rdf:Property ;
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
-          sh:nodeKind sh:IRI ;
+          sh:nodeKind sh:Literal ;
         ] ;
       sh:closed true
     ] ;
@@ -335,7 +335,7 @@ pp:createTopConcept a hydra:TemplatedLink , rdf:Property ;
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
-          sh:nodeKind sh:IRI ;
+          sh:nodeKind sh:Literal ;
         ] ,
         [
           sh:path skos:topConceptOf ;
@@ -383,7 +383,7 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
-          sh:nodeKind sh:IRI ;
+          sh:nodeKind sh:Literal ;
         ] ;
       sh:closed true
     ] ;
@@ -402,7 +402,7 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
-          sh:nodeKind sh:IRI ;
+          sh:nodeKind sh:Literal ;
         ] ,
         [
           sh:path skos:topConceptOf ;
@@ -570,7 +570,7 @@ pp:ConceptShape a sh:NodeShape ;
       sh:path skos-api:uri ;
       sh:minCount 1 ;
       sh:maxCount 1 ;
-      sh:nodeKind sh:IRI ;
+      sh:nodeKind sh:Literal ;
     ] ,
     [
       sh:path skos-api:parent ;
