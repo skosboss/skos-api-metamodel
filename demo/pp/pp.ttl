@@ -345,7 +345,7 @@ pp:createTopConcept a hydra:TemplatedLink , rdf:Property ;
         ] ,
         # is this necessary to add?
         [
-          sh:inversePath skos:hasTopConcept ;
+          sh:path [ sh:inversePath skos:hasTopConcept ] ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
@@ -412,7 +412,7 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
         ] ,
         # is this necessary to add?
         [
-          sh:inversePath skos:hasTopConcept ;
+          sh:path [ sh:inversePath skos:hasTopConcept ] ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
