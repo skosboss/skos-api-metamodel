@@ -125,6 +125,8 @@ pp:createConceptScheme a hydra:TemplatedLink , rdf:Property ;
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
+          # empty string indicates unknown uri
+          sh:minLength 1 ;
           sh:nodeKind sh:Literal ;
         ] ;
       sh:closed true
@@ -151,6 +153,8 @@ pp:createConceptScheme a hydra:TemplatedLink , rdf:Property ;
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
+          # empty string indicates unknown uri
+          sh:minLength 1 ;
           sh:nodeKind sh:Literal ;
         ] ,
         [
@@ -215,6 +219,8 @@ pp:getConceptSchemes a hydra:TemplatedLink , rdf:Property ;
                 sh:path skos-api:uri ;
                 sh:minCount 1 ;
                 sh:maxCount 1 ;
+                # empty string indicates unknown uri
+                sh:minLength 1 ;
                 sh:nodeKind sh:Literal ;
               ] ,
               [
@@ -325,6 +331,8 @@ pp:createTopConcept a hydra:TemplatedLink , rdf:Property ;
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
+          # empty string indicates unknown uri
+          sh:minLength 1 ;
           sh:nodeKind sh:Literal ;
         ] ;
       sh:closed true
@@ -351,6 +359,8 @@ pp:createTopConcept a hydra:TemplatedLink , rdf:Property ;
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
+          # empty string indicates unknown uri
+          sh:minLength 1 ;
           sh:nodeKind sh:Literal ;
         ] ,
         [
@@ -412,6 +422,8 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
+          # empty string indicates unknown uri
+          sh:minLength 1 ;
           sh:nodeKind sh:Literal ;
         ] ;
       sh:closed true
@@ -438,6 +450,8 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
+          # empty string indicates unknown uri
+          sh:minLength 1 ;
           sh:nodeKind sh:Literal ;
         ] ,
         [
@@ -523,6 +537,8 @@ pp:addPrefLabel a hydra:TemplatedLink , rdf:Property ;
           sh:path skos-api:uri ;
           sh:maxCount 1 ;
           sh:maxCount 1 ;
+          # empty string indicates unknown uri
+          sh:minLength 1 ;
         ] ;
       sh:closed true
     ] ;
@@ -571,6 +587,8 @@ pp:addAltLabel a hydra:TemplatedLink , rdf:Property ;
           sh:path skos-api:uri ;
           sh:maxCount 1 ;
           sh:maxCount 1 ;
+          # empty string indicates unknown uri
+          sh:minLength 1 ;
         ] ;
       sh:closed true
     ] ;
@@ -619,6 +637,8 @@ pp:deleteAltLabel a hydra:TemplatedLink , rdf:Property ;
           sh:path skos-api:uri ;
           sh:maxCount 1 ;
           sh:maxCount 1 ;
+          # empty string indicates unknown uri
+          sh:minLength 1 ;
         ] ;
       sh:closed true
     ] ;
@@ -654,6 +674,8 @@ pp:ConceptShape a sh:NodeShape ;
       sh:path skos-api:uri ;
       sh:minCount 1 ;
       sh:maxCount 1 ;
+      # empty string indicates unknown uri
+      sh:minLength 1 ;
       sh:nodeKind sh:Literal ;
     ] ,
     [
