@@ -438,20 +438,14 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
           sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
           sh:hasValue skos:Concept ;
-          sh:node [
-            sh:path [ sh:inversePath rdf:type ] ;
-            # Normally we want to check that the subject is not a blank node, which would indicate an as of yet unkown node.
-            # Because of our nasty use of RDF4J and Jena, we have some issues with blank nodes, so we use <urn:xxx>
-            #sh:nodeKind sh:IRI ;
-            sh:pattern "^http://"
-          ]
         ] ,
         [
           sh:path skos-api:uri ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           # empty string indicates unknown uri
-          sh:minLength 1 ;
+          sh:minLength 0 ;
+          sh:maxLength 0 ;
           sh:nodeKind sh:Literal ;
         ] ,
         [
