@@ -156,7 +156,6 @@ pp:createConceptScheme a hydra:TemplatedLink , rdf:Property ;
           sh:maxCount 1 ;
           sh:nodeKind sh:Literal ;
         ];
-      # should this be a closed shape?
       sh:closed true
     ] ;
     hydra:statusCodes
@@ -205,6 +204,7 @@ pp:getConceptSchemes a hydra:TemplatedLink , rdf:Property ;
             ]
           ]
         ] ;
+      sh:closed true
     ] ;
     hydra:statusCodes
       [
@@ -229,6 +229,7 @@ pp:getTopConcepts a hydra:TemplatedLink , rdf:Property ;
           sh:path sh:member ;
           sh:node pp:ConceptShape ;
         ] ;
+      sh:closed true
     ] ;
     hydra:statusCodes
       [
@@ -253,6 +254,7 @@ pp:getChildConcepts a hydra:TemplatedLink , rdf:Property ;
           sh:path sh:member ;
           sh:node pp:ConceptShape ;
         ] ;
+      sh:closed true
     ] ;
     hydra:statusCodes
       [
@@ -448,7 +450,6 @@ pp:addPrefLabel a hydra:TemplatedLink , rdf:Property ;
           sh:maxCount 1 ;
           sh:minLength 1 ;
         ] ;
-      # should this be a closed shape?
       sh:closed true
     ] ;
     hydra:statusCodes
@@ -520,7 +521,6 @@ pp:deleteAltLabel a hydra:TemplatedLink , rdf:Property ;
           sh:maxCount 1 ;
           sh:minLength 1 ;
         ] ;
-      # should this be a closed shape?
       sh:closed true
     ] ;
     hydra:statusCodes
@@ -629,4 +629,5 @@ pp:ConceptShape a sh:NodeShape ;
       sh:path skos:relatedMatch ;
       sh:nodeKind sh:IRI ;
     ] ;
+  sh:closed true
 .
