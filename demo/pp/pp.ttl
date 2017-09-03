@@ -155,7 +155,7 @@ pp:createConceptScheme a hydra:TemplatedLink , rdf:Property ;
           sh:path skos-api:description ;
           sh:maxCount 1 ;
           sh:nodeKind sh:Literal ;
-        ];
+        ] ;
       sh:closed true
     ] ;
     hydra:statusCodes
@@ -330,7 +330,13 @@ pp:createTopConcept a hydra:TemplatedLink , rdf:Property ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
-        ];
+        ] ,
+        # link to parent
+        [
+          sh:path ( skos-api:parent skos-api:uri ) ;
+          sh:maxCount 1 ;
+          sh:maxCount 1 ;
+        ] ;
       sh:closed true
     ] ;
     hydra:statusCodes
@@ -397,7 +403,13 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
-        ];
+        ] ,
+        # link to parent
+        [
+          sh:path ( skos-api:parent skos-api:uri ) ;
+          sh:maxCount 1 ;
+          sh:maxCount 1 ;
+        ] ;
       sh:closed true
     ] ;
     hydra:statusCodes
@@ -449,6 +461,12 @@ pp:addPrefLabel a hydra:TemplatedLink , rdf:Property ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:minLength 1 ;
+        ] ,
+        # concept must exist
+        [
+          sh:path skos-api:uri ;
+          sh:maxCount 1 ;
+          sh:maxCount 1 ;
         ] ;
       sh:closed true
     ] ;
@@ -484,8 +502,13 @@ pp:addAltLabel a hydra:TemplatedLink , rdf:Property ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:minLength 1 ;
+        ] ,
+        # concept must exist
+        [
+          sh:path skos-api:uri ;
+          sh:maxCount 1 ;
+          sh:maxCount 1 ;
         ] ;
-      # should this be a closed shape?
       sh:closed true
     ] ;
     hydra:statusCodes
@@ -520,6 +543,12 @@ pp:deleteAltLabel a hydra:TemplatedLink , rdf:Property ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:minLength 1 ;
+        ] ,
+        # concept must exist
+        [
+          sh:path skos-api:uri ;
+          sh:maxCount 1 ;
+          sh:maxCount 1 ;
         ] ;
       sh:closed true
     ] ;
