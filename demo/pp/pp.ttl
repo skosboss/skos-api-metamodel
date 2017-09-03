@@ -105,14 +105,14 @@ pp:createConceptScheme a hydra:TemplatedLink , rdf:Property ;
     #}
     hydra-ext:returnShape [
       a sh:NodeShape ;
-      sh:targetClass rdfs:Resource ;
+      sh:targetSubjectsOf rdf:type ;
       sh:property
         [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 2 ;
+          sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
-          sh:in ( skos:ConceptScheme rdfs:Resource) ;
+          sh:hasValue skos:ConceptScheme ;
         ] ,
         [
           sh:path skos-api:uri ;
@@ -124,14 +124,14 @@ pp:createConceptScheme a hydra:TemplatedLink , rdf:Property ;
     ] ;
     hydra-ext:addedDiff [
       a sh:NodeShape ;
-      sh:targetClass rdfs:Resource ;
+      sh:targetSubjectsOf rdf:type ;
       sh:property
         [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 2 ;
+          sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
-          sh:in ( skos:ConceptScheme rdfs:Resource) ;
+          sh:hasValue skos:ConceptScheme ;
         ] ,
         [
           sh:path skos-api:uri ;
@@ -177,15 +177,8 @@ pp:getConceptSchemes a hydra:TemplatedLink , rdf:Property ;
     hydra:returns hydra:Collection ;
     hydra-ext:returnShape [
       a sh:NodeShape ;
-      sh:targetClass rdfs:Resource ;
+      sh:targetClass hydra:Collection ;
       sh:property
-        [
-          sh:path rdf:type ;
-          sh:minCount 1 ;
-          sh:maxCount 2 ;
-          sh:nodeKind sh:IRI ;
-          sh:in ( hydra:Collection rdfs:Resource) ;
-        ] ,
         [
           sh:path sh:member ;
           sh:node
@@ -196,7 +189,7 @@ pp:getConceptSchemes a hydra:TemplatedLink , rdf:Property ;
               sh:minCount 1 ;
               sh:maxCount 2 ;
               sh:nodeKind sh:IRI ;
-              sh:in ( skos:ConceptScheme rdfs:Resource) ;
+              sh:hasValue skos:ConceptScheme ;
             ] ,
             [
               sh:path skos-api:uri ;
@@ -230,15 +223,8 @@ pp:getTopConcepts a hydra:TemplatedLink , rdf:Property ;
     hydra:returns hydra:Collection ;
     hydra-ext:returnShape [
       a sh:NodeShape ;
-      sh:targetClass rdfs:Resource ;
+      sh:targetClass hydra:Collection ;
       sh:property
-        [
-          sh:path rdf:type ;
-          sh:minCount 1 ;
-          sh:maxCount 2 ;
-          sh:nodeKind sh:IRI ;
-          sh:in ( hydra:Collection rdfs:Resource) ;
-        ] ,
         [
           sh:path sh:member ;
           sh:node pp:ConceptShape ;
@@ -261,15 +247,8 @@ pp:getChildConcepts a hydra:TemplatedLink , rdf:Property ;
     hydra:returns hydra:Collection ;
     hydra-ext:returnShape [
       a sh:NodeShape ;
-      sh:targetClass rdfs:Resource ;
+      sh:targetClass hydra:Collection ;
       sh:property
-        [
-          sh:path rdf:type ;
-          sh:minCount 1 ;
-          sh:maxCount 2 ;
-          sh:nodeKind sh:IRI ;
-          sh:in ( hydra:Collection rdfs:Resource) ;
-        ] ,
         [
           sh:path sh:member ;
           sh:node pp:ConceptShape ;
@@ -303,14 +282,14 @@ pp:createTopConcept a hydra:TemplatedLink , rdf:Property ;
     #}
     hydra-ext:returnShape [
       a sh:NodeShape ;
-      sh:targetClass rdfs:Resource ;
+      sh:targetSubjectsOf rdf:type ;
       sh:property
         [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 2 ;
+          sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
-          sh:in ( skos:Concept rdfs:Resource) ;
+          sh:hasValue skos:Concept ;
         ],
         [
           sh:path skos-api:uri ;
@@ -322,14 +301,14 @@ pp:createTopConcept a hydra:TemplatedLink , rdf:Property ;
     ] ;
     hydra-ext:addedDiff [
       a sh:NodeShape ;
-      sh:targetClass rdfs:Resource ;
+      sh:targetSubjectsOf rdf:type ;
       sh:property
         [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 2 ;
+          sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
-          sh:in ( skos:Concept rdfs:Resource) ;
+          sh:hasValue skos:Concept ;
         ] ,
         [
           sh:path skos-api:uri ;
@@ -370,14 +349,14 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
     hydra:returns skos:Concept ;
     hydra-ext:returnShape [
       a sh:NodeShape ;
-      sh:targetClass rdfs:Resource ;
+      sh:targetSubjectsOf rdf:type ;
       sh:property
         [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 2 ;
+          sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
-          sh:in ( skos:Concept rdfs:Resource) ;
+          sh:hasValue skos:Concept ;
         ],
         [
           sh:path skos-api:uri ;
@@ -389,14 +368,14 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
     ] ;
     hydra-ext:addedDiff [
       a sh:NodeShape ;
-      sh:targetClass rdfs:Resource ;
+      sh:targetSubjectsOf rdf:type ;
       sh:property
         [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 2 ;
+          sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
-          sh:in ( skos:Concept rdfs:Resource) ;
+          sh:hasValue skos:Concept ;
         ] ,
         [
           sh:path skos-api:uri ;
@@ -453,14 +432,14 @@ pp:addPrefLabel a hydra:TemplatedLink , rdf:Property ;
     hydra:description "Adds a preferred label to an existing SKOS concept." ;
     hydra-ext:addedDiff [
       a sh:NodeShape ;
-      sh:targetClass rdfs:Resource ;
+      sh:targetSubjectsOf rdf:type ;
       sh:property
         [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 2 ;
+          sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
-          sh:in ( skos:Concept rdfs:Resource) ;
+          sh:hasValue skos:Concept ;
         ] ,
         [
           sh:path skos:prefLabel ;
@@ -489,14 +468,14 @@ pp:addAltLabel a hydra:TemplatedLink , rdf:Property ;
     hydra:description "Adds an alternative label to an existing SKOS concept." ;
     hydra-ext:addedDiff [
       a sh:NodeShape ;
-      sh:targetClass rdfs:Resource ;
+      sh:targetSubjectsOf rdf:type ;
       sh:property
         [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 2 ;
+          sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
-          sh:in ( skos:Concept rdfs:Resource) ;
+          sh:hasValue skos:Concept ;
         ] ,
         [
           sh:path skos:altLabel ;
@@ -525,14 +504,14 @@ pp:deleteAltLabel a hydra:TemplatedLink , rdf:Property ;
     hydra:description "Deletes an alternative label from an existing SKOS concept." ;
     hydra-ext:deletedDiff [
       a sh:NodeShape ;
-      sh:targetClass rdfs:Resource ;
+      sh:targetSubjectsOf rdf:type ;
       sh:property
         [
           sh:path rdf:type ;
           sh:minCount 1 ;
-          sh:maxCount 2 ;
+          sh:maxCount 1 ;
           sh:nodeKind sh:IRI ;
-          sh:in ( skos:Concept rdfs:Resource) ;
+          sh:hasValue skos:Concept ;
         ] ,
         [
           sh:path skos:altLabel ;
@@ -557,14 +536,14 @@ pp:deleteAltLabel a hydra:TemplatedLink , rdf:Property ;
 
 pp:ConceptShape a sh:NodeShape ;
   sh:targetClass skos-api:Concept ;
-  sh:targetClass rdfs:Resource ;
+  sh:targetSubjectsOf rdf:type ;
   sh:property
     [
       sh:path rdf:type ;
       sh:minCount 1 ;
       sh:maxCount 2 ;
       sh:nodeKind sh:IRI ;
-      sh:in ( skos:Concept rdfs:Resource) ;
+      sh:hasValue skos:Concept ;
     ] ,
     [
       sh:path skos-api:uri ;
