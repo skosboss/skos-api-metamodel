@@ -105,7 +105,7 @@ pp:createConceptScheme a hydra:TemplatedLink , rdf:Property ;
     #}
     hydra-ext:returnShape [
       a sh:NodeShape ;
-      sh:targetSubjectsOf rdf:type ;
+      sh:targetClass skos:ConceptScheme ;
       sh:property
         [
           sh:path rdf:type ;
@@ -124,7 +124,7 @@ pp:createConceptScheme a hydra:TemplatedLink , rdf:Property ;
     ] ;
     hydra-ext:addedDiff [
       a sh:NodeShape ;
-      sh:targetSubjectsOf rdf:type ;
+      sh:targetClass skos:ConceptScheme ;
       sh:property
         [
           sh:path rdf:type ;
@@ -284,7 +284,7 @@ pp:createTopConcept a hydra:TemplatedLink , rdf:Property ;
     #}
     hydra-ext:returnShape [
       a sh:NodeShape ;
-      sh:targetSubjectsOf rdf:type ;
+      sh:targetClass skos:Concept ;
       sh:property
         [
           sh:path rdf:type ;
@@ -303,7 +303,7 @@ pp:createTopConcept a hydra:TemplatedLink , rdf:Property ;
     ] ;
     hydra-ext:addedDiff [
       a sh:NodeShape ;
-      sh:targetSubjectsOf rdf:type ;
+      sh:targetClass skos:Concept ;
       sh:property
         [
           sh:path rdf:type ;
@@ -357,7 +357,7 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
     hydra:returns skos:Concept ;
     hydra-ext:returnShape [
       a sh:NodeShape ;
-      sh:targetSubjectsOf rdf:type ;
+      sh:targetClass skos:Concept ;
       sh:property
         [
           sh:path rdf:type ;
@@ -376,7 +376,7 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
     ] ;
     hydra-ext:addedDiff [
       a sh:NodeShape ;
-      sh:targetSubjectsOf rdf:type ;
+      sh:targetClass skos:Concept ;
       sh:property
         [
           sh:path rdf:type ;
@@ -446,7 +446,7 @@ pp:addPrefLabel a hydra:TemplatedLink , rdf:Property ;
     hydra:description "Adds a preferred label to an existing SKOS concept." ;
     hydra-ext:addedDiff [
       a sh:NodeShape ;
-      sh:targetSubjectsOf rdf:type ;
+      sh:targetClass skos:Concept ;
       sh:property
         [
           sh:path rdf:type ;
@@ -487,7 +487,7 @@ pp:addAltLabel a hydra:TemplatedLink , rdf:Property ;
     hydra:description "Adds an alternative label to an existing SKOS concept." ;
     hydra-ext:addedDiff [
       a sh:NodeShape ;
-      sh:targetSubjectsOf rdf:type ;
+      sh:targetClass skos:Concept ;
       sh:property
         [
           sh:path rdf:type ;
@@ -528,7 +528,7 @@ pp:deleteAltLabel a hydra:TemplatedLink , rdf:Property ;
     hydra:description "Deletes an alternative label from an existing SKOS concept." ;
     hydra-ext:deletedDiff [
       a sh:NodeShape ;
-      sh:targetSubjectsOf rdf:type ;
+      sh:targetClass skos:Concept ;
       sh:property
         [
           sh:path rdf:type ;
@@ -564,8 +564,7 @@ pp:deleteAltLabel a hydra:TemplatedLink , rdf:Property ;
 # Reusable shapes
 
 pp:ConceptShape a sh:NodeShape ;
-  sh:targetClass skos-api:Concept ;
-  sh:targetSubjectsOf rdf:type ;
+  sh:targetClass skos:Concept ;
   sh:property
     [
       sh:path rdf:type ;
