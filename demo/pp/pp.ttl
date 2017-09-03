@@ -180,28 +180,28 @@ pp:getConceptSchemes a hydra:TemplatedLink , rdf:Property ;
       sh:property
         [
           sh:path sh:member ;
-          sh:node
-            [
-              a sh:NodeShape ;
-              sh:property [
-              sh:path rdf:type ;
-              sh:minCount 1 ;
-              sh:maxCount 2 ;
-              sh:nodeKind sh:IRI ;
-              sh:hasValue skos:ConceptScheme ;
-            ] ,
-            [
-              sh:path skos-api:uri ;
-              sh:minCount 1 ;
-              sh:maxCount 1 ;
-              sh:nodeKind sh:Literal ;
-            ] ,
-            [
-              sh:path skos-api:title ;
-              sh:minCount 1 ;
-              sh:maxCount 1 ;
-              sh:nodeKind sh:Literal ;
-            ]
+          sh:node [
+            a sh:NodeShape ;
+            sh:property
+              [
+                sh:path rdf:type ;
+                sh:minCount 1 ;
+                sh:maxCount 1 ;
+                sh:nodeKind sh:IRI ;
+                sh:hasValue skos:ConceptScheme ;
+              ] ,
+              [
+                sh:path skos-api:uri ;
+                sh:minCount 1 ;
+                sh:maxCount 1 ;
+                sh:nodeKind sh:Literal ;
+              ] ,
+              [
+                sh:path skos-api:title ;
+                sh:minCount 1 ;
+                sh:maxCount 1 ;
+                sh:nodeKind sh:Literal ;
+              ]
           ]
         ] ;
       sh:closed true
@@ -570,7 +570,7 @@ pp:ConceptShape a sh:NodeShape ;
     [
       sh:path rdf:type ;
       sh:minCount 1 ;
-      sh:maxCount 2 ;
+      sh:maxCount 1 ;
       sh:nodeKind sh:IRI ;
       sh:hasValue skos:Concept ;
     ] ,
