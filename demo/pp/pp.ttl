@@ -408,19 +408,19 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
           sh:maxLength 0 ;
           sh:nodeKind sh:Literal ;
         ] ,
-        [
-          sh:path skos:topConceptOf ;
-          sh:minCount 1 ;
-          sh:maxCount 1 ;
-          sh:nodeKind sh:IRI ;
-        ] ,
+        # [
+        #   sh:path skos:topConceptOf ;
+        #   sh:minCount 1 ;
+        #   sh:maxCount 1 ;
+        #   sh:nodeKind sh:IRI ;
+        # ] ,
         # is this necessary to add?
-        [
-          sh:path [ sh:inversePath skos:hasTopConcept ] ;
-          sh:minCount 1 ;
-          sh:maxCount 1 ;
-          sh:nodeKind sh:IRI ;
-        ] ,
+        # [
+        #   sh:path [ sh:inversePath skos:hasTopConcept ] ;
+        #   sh:minCount 1 ;
+        #   sh:maxCount 1 ;
+        #   sh:nodeKind sh:IRI ;
+        # ] ,
         # link to parent
         [
           sh:path ( skos-api:parent skos-api:uri ) ;
