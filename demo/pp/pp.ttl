@@ -543,14 +543,6 @@ pp:addAltLabel a hydra:TemplatedLink , rdf:Property ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:minLength 1 ;
-        ] ,
-        # concept must exist
-        [
-          sh:path skos-api:uri ;
-          sh:maxCount 1 ;
-          sh:maxCount 1 ;
-          # empty string indicates unknown uri
-          sh:minLength 1 ;
         ] ;
       sh:closed true
     ] ;
