@@ -12,7 +12,7 @@
 pp:api a pp:Entrypoint;
   pp:createConceptScheme [
     a hydra:IriTemplate ;
-    hydra:template "/PoolParty/api/thesaurus/{project}/createConceptScheme{?title}" ;
+    hydra:template "/api/thesaurus/{project}/createConceptScheme{?title}" ;
     hydra:variableRepresentation hydra:BasicRepresentation ;
     hydra:mapping
       [
@@ -34,7 +34,7 @@ pp:api a pp:Entrypoint;
   ] ;
   pp:getConceptSchemes [
     a hydra:IriTemplate ;
-    hydra:template "/PoolParty/api/thesaurus/{project}/schemes" ;
+    hydra:template "/api/thesaurus/{project}/schemes" ;
     hydra:variableRepresentation hydra:BasicRepresentation ;
     hydra:mapping [
       a hydra:IriTemplateMapping ;
@@ -45,7 +45,7 @@ pp:api a pp:Entrypoint;
   ] ;
   pp:getTopConcepts [
     a hydra:IriTemplate ;
-    hydra:template "/PoolParty/api/thesaurus/{project}/topconcepts{?scheme}&properties=skos:altLabel,skos:hiddenLabel,skos:definition,skos:notation,skos:example,skos:scopeNote,skos:broader,skos:narrower,skos:related,skos:ConceptScheme,skos:exactMatch,skos:closeMatch,skos:broadMatch,skos:narrowMatch,skos:relatedMatch,skos:topConceptOf{&language}" ;
+    hydra:template "/api/thesaurus/{project}/topconcepts{?scheme}&properties=skos:altLabel,skos:hiddenLabel,skos:definition,skos:notation,skos:example,skos:scopeNote,skos:broader,skos:narrower,skos:related,skos:ConceptScheme,skos:exactMatch,skos:closeMatch,skos:broadMatch,skos:narrowMatch,skos:relatedMatch,skos:topConceptOf{&language}" ;
     hydra:variableRepresentation hydra:BasicRepresentation ;
     hydra:mapping
       [
@@ -71,7 +71,7 @@ pp:api a pp:Entrypoint;
   ] ;
   pp:getChildConcepts [
     a hydra:IriTemplate ;
-    hydra:template "/PoolParty/api/thesaurus/{project}/childconcepts{?parent}&properties=skos:altLabel,skos:hiddenLabel,skos:definition,skos:notation,skos:example,skos:scopeNote,skos:broader,skos:narrower,skos:related,skos:ConceptScheme,skos:exactMatch,skos:closeMatch,skos:broadMatch,skos:narrowMatch,skos:relatedMatch,skos:topConceptOf{&language}" ;
+    hydra:template "/api/thesaurus/{project}/childconcepts{?parent}&properties=skos:altLabel,skos:hiddenLabel,skos:definition,skos:notation,skos:example,skos:scopeNote,skos:broader,skos:narrower,skos:related,skos:ConceptScheme,skos:exactMatch,skos:closeMatch,skos:broadMatch,skos:narrowMatch,skos:relatedMatch,skos:topConceptOf{&language}" ;
     hydra:variableRepresentation hydra:BasicRepresentation ;
     hydra:mapping
       [
@@ -97,7 +97,7 @@ pp:api a pp:Entrypoint;
   ] ;
   pp:createTopConcept [
     a hydra:IriTemplate ;
-    hydra:template "/PoolParty/api/thesaurus/{project}/createConcept{?parent,prefLabel}" ;
+    hydra:template "/api/thesaurus/{project}/createConcept{?parent,prefLabel}" ;
     hydra:variableRepresentation hydra:BasicRepresentation ;
     hydra:mapping
       [
@@ -121,7 +121,7 @@ pp:api a pp:Entrypoint;
   ] ;
   pp:createConcept [
     a hydra:IriTemplate ;
-    hydra:template "/PoolParty/api/thesaurus/{project}/createConcept{?parent,prefLabel}" ;
+    hydra:template "/api/thesaurus/{project}/createConcept{?parent,prefLabel}" ;
     hydra:variableRepresentation hydra:BasicRepresentation ;
     hydra:mapping
       [
@@ -148,7 +148,7 @@ pp:api a pp:Entrypoint;
     a hydra:IriTemplate ;
     # just grab all skos properties always
     # excluded param 'workflowStatus' because this is pp sepecific
-    hydra:template "/PoolParty/api/thesaurus/{project}/concept{?concept}&properties=skos:altLabel,skos:hiddenLabel,skos:definition,skos:notation,skos:example,skos:scopeNote,skos:broader,skos:narrower,skos:related,skos:ConceptScheme,skos:exactMatch,skos:closeMatch,skos:broadMatch,skos:narrowMatch,skos:relatedMatch,skos:topConceptOf{&language}" ;
+    hydra:template "/api/thesaurus/{project}/concept{?concept}&properties=skos:altLabel,skos:hiddenLabel,skos:definition,skos:notation,skos:example,skos:scopeNote,skos:broader,skos:narrower,skos:related,skos:ConceptScheme,skos:exactMatch,skos:closeMatch,skos:broadMatch,skos:narrowMatch,skos:relatedMatch,skos:topConceptOf{&language}" ;
     hydra:variableRepresentation hydra:BasicRepresentation ;
     hydra:mapping
       [
@@ -174,7 +174,7 @@ pp:api a pp:Entrypoint;
     ] ;
   pp:addPrefLabel [
     a hydra:IriTemplate ;
-    hydra:template "/PoolParty/api/thesaurus/{project}/concept{?concept,label}&property=preferredLabel{&language}" ;
+    hydra:template "/api/thesaurus/{project}/addLiteral{?concept,label}&property=preferredLabel{&language}" ;
     hydra:variableRepresentation hydra:BasicRepresentation ;
     hydra:mapping
       [
@@ -202,7 +202,7 @@ pp:api a pp:Entrypoint;
   ] ;
   pp:addAltLabel [
     a hydra:IriTemplate ;
-    hydra:template "/PoolParty/api/thesaurus/{project}/concept{?concept,label}&property=alternativeLabel{&language}" ;
+    hydra:template "/api/thesaurus/{project}/addLiteral{?concept,label}&property=alternativeLabel{&language}" ;
     hydra:variableRepresentation hydra:BasicRepresentation ;
     hydra:mapping
       [
@@ -233,7 +233,7 @@ pp:api a pp:Entrypoint;
   ] ;
   pp:deleteAltLabel [
     a hydra:IriTemplate ;
-    hydra:template "/PoolParty/api/thesaurus/{project}/removeLiteral{?concept,label}&property=alternativeLabel{&language}" ;
+    hydra:template "/api/thesaurus/{project}/removeLiteral{?concept,label}&property=alternativeLabel{&language}" ;
     hydra:variableRepresentation hydra:BasicRepresentation ;
     hydra:mapping
       [
