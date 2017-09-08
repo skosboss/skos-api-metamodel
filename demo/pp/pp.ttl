@@ -442,6 +442,12 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
           sh:minCount 1 ;
           sh:maxCount 1 ;
           sh:nodeKind sh:Literal ;
+        ] ,
+        [
+          sh:path skos:broader ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
         ] ;
       sh:closed true
     ] ;
