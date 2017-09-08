@@ -345,9 +345,17 @@ pp:createTopConcept a hydra:TemplatedLink , rdf:Property ;
         ] ,
         # link to parent
         [
-          sh:path ( skos-api:parent skos-api:uri ) ;
+          # sh:path ( skos-api:parent skos-api:uri ) ;
+          sh:path skos-api:parent ;
           sh:maxCount 1 ;
           sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+        ] ,
+        [
+          sh:path skos:prefLabel ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:Literal ;
         ] ;
       sh:closed true
     ] ;
@@ -423,9 +431,17 @@ pp:createConcept a hydra:TemplatedLink , rdf:Property ;
         # ] ,
         # link to parent
         [
-          sh:path ( skos-api:parent skos-api:uri ) ;
+          # sh:path ( skos-api:parent skos-api:uri ) ;
+          sh:path skos-api:parent ;
           sh:maxCount 1 ;
           sh:maxCount 1 ;
+          sh:nodeKind sh:IRI ;
+        ] ,
+        [
+          sh:path skos:prefLabel ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+          sh:nodeKind sh:Literal ;
         ] ;
       sh:closed true
     ] ;
